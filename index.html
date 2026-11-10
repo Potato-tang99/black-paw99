@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="귀여운 픽셀 고양이와 함께하는 올블랙 뽀모도로 집중 타이머">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  
+  <title>BLACK PAW</title>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-dot"></span> pomodoro</div>
+      <button class="icon-btn" id="settingsOpen" aria-label="설정 열기">⚙</button>
+    </header>
+
+    <section class="hero" aria-live="polite">
+      <div class="phase-pill" id="phasePill"><span class="dot"></span> 집중 준비</div>
+      <div class="timer" id="timer">25:00</div>
+      <div class="set-counter" id="setCounter" aria-label="완료한 세트">○ ○ ○ ○</div>
+      <div class="set-caption" id="progressText">0 / 4 세트 완료</div>
+
+      <div class="cat-stage" id="catStage" aria-label="공부하는 검은 고양이 애니메이션">
+        <svg class="study-scene" viewBox="0 0 440 330" role="img" aria-label="손그림 선화 스타일로 책상에서 공부하는 귀여운 고양이">
+          <defs>
+            <filter id="handWobble" x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence type="fractalNoise" baseFrequency=".025" numOctaves="2" seed="8" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.15" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+          <g class="scene-lines" fill="none" stroke="currentColor" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round" filter="url(#handWobble)">
+            <!-- tiny hand-drawn sparkles -->
+            <path class="star star-a" d="M66 78q3 9 11 12-9 3-12 12-2-9-11-12 9-3 12-12z"/>
+            <path class="star star-b" d="M359 70q2 7 9 9-7 2-9 9-2-7-9-9 7-2 9-9z"/>
+            <path d="M330 104q5-5 9 0m-4-9q2-3 4-4" opacity=".65"/>
+
+            <!-- curled tail behind the kitten -->
+            <path class="tail" d="M286 220q26 8 43-7 14-13 5-28-8-14-20-6-8 6-2 14 4 5 10 2"/>
+
+            <!-- cat ears and round, soft head silhouette -->
+            <path d="M143 143q-9-25-1-56 5-20 15-22 12-2 27 33 9-3 19-3 9 0 18 3 17-35 29-33 12 2 16 23 7 30-2 55"/>
+            <path d="M139 135q-24 17-28 48-5 24 9 42 14 20 49 23 25 3 55 3 31 0 55-4 34-6 47-27 12-20 5-43-5-25-28-42"/>
+            <!-- little inner ears -->
+            <path d="M157 91q5 13 13 25m116-25q-5 13-13 25" opacity=".7"/>
+
+            <!-- relaxed, focused face -->
+            <path d="M164 166q8 11 17 0m68 0q8 11 17 0"/>
+            <path d="M210 178q6 6 12 0m-6 0v6m-9 5q9 7 18 0"/>
+            <path d="M184 147q5-4 10 0m42 0q5-4 10 0" opacity=".65"/>
+            <path d="M198 157q2 2 4 0m34 0q2 2 4 0" opacity=".45"/>
+
+            <!-- body, little feet -->
+            <path d="M150 235q-10 18-8 42m145-42q11 18 9 42"/>
+            <path d="M157 244q-4 22 14 37 14 11 37 12h30q27-2 40-16 13-14 10-34"/>
+            <path d="M179 286q-2 9 8 10h22m38 0h19q9-2 7-10"/>
+
+            <!-- left paw holding the open book -->
+            <path d="M157 244q-20 5-34 21-11 13-5 23 7 9 18 2l31-21"/>
+            <path d="M140 278q-5 8 2 12 7 4 14-2"/>
+            <!-- right arm writing -->
+            <path class="writing-arm" d="M274 241q17 7 24 21 7 13 0 23-7 8-17 0l-22-23"/>
+            <path d="M282 278q7 8 15 3" opacity=".7"/>
+
+            <!-- desk top and legs -->
+            <path d="M43 281q88-3 176-2 91 1 178-2l-16 16q-168 5-323 0z"/>
+            <path d="M65 294l-8 25m316-25 9 25"/>
+            <path d="M55 319q24 4 47 1m265 0q16 3 28-1" opacity=".7"/>
+
+            <!-- notebook pages in front of cat -->
+            <path d="M151 268q33-10 72 5 36-15 71-5l-9 37q-32-10-62 7-29-17-63-7z"/>
+            <path d="M223 273v39m-51-27q16-5 36 3m32-3q18-7 35-2"/>
+            <path d="M166 300q17-4 34 2m44-2q17-6 34-1" opacity=".55"/>
+
+            <!-- tablet/notebook stack on the left -->
+            <path d="M43 255l89-2 7 51-91 4z"/>
+            <path d="M37 263l95-4 4 51-93 3z"/>
+            <path d="M48 250l83-2 5 43-85 4z"/>
+            <path d="M57 258l65-2 3 30-66 3z"/>
+            <path d="M64 264l53-2 2 21-53 2z"/>
+            <path d="M47 308q43 7 91 0m-84 7q36 5 77 0" opacity=".7"/>
+            <!-- spiral notebook rings -->
+            <path d="M49 310q-7 8 0 11m10-12q-7 8 0 11m10-11q-7 8 0 11m10-11q-7 8 0 11m10-11q-7 8 0 11" />
+
+            <!-- cup with straw on left -->
+            <path d="M78 229q18-7 37 0l-5 34q-14 7-27 0z"/>
+            <path d="M75 229q20-10 43 0m-34 9q14 5 27 0"/>
+            <path d="M91 226l5-31 7 1-5 34"/>
+            <path d="M96 195l15 2m-18 13q10 3 18 0" opacity=".7"/>
+            <path class="steam" d="M84 216q-7-8 0-16t0-15m15 30q-6-8 1-16t0-14"/>
+
+            <!-- laptop on the right -->
+            <path d="M326 244q35-9 72-12 9 0 11 8l-10 58q-37 9-75 13-8 0-7-8z"/>
+            <path d="M317 310q49-11 99-15l22 16q-47 12-95 17z"/>
+            <path d="M349 300l10-24q15-8 30-5l8 22"/>
+            <path d="M340 313l67-12" opacity=".55"/>
+            <!-- loose pencil marks -->
+            <path d="M185 258q9-3 16 0m7-2q8-2 14 1" opacity=".5"/>
+            <g class="pencil"><path d="M284 250l13-35 7 3-13 35-10 8z"/><path d="M297 215l5-10 7 3-5 10"/></g>
+          </g>
+          <g class="scene-accent" fill="none" stroke="#d9d4df" stroke-width="1.8" stroke-linecap="round">
+            <path class="pencil-glint" d="M300 216l4-10"/>
+            <path d="M83 241q13 4 26 0" opacity=".5"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="controls">
+        <button class="round-control" id="skipBtn" aria-label="다음 단계" title="다음 단계">▻│</button>
+        <button class="round-control play-control" id="startBtn" aria-label="시작" title="시작">▶</button>
+        <button class="round-control" id="resetBtn" aria-label="현재 세션 초기화" title="현재 세션 초기화">↻</button>
+        <button class="round-control" id="fullResetShortcut" aria-label="전체 초기화" title="전체 초기화">×</button>
+      </div>
+      <div class="substatus" id="substatus">집중할 준비가 되었나요?</div>
+    </section>
+
+    <section class="sound-panel">
+      <div class="sound-card">
+        <div class="sound-info"><span class="sound-icon">〰</span><b>집중 백색소음</b><small>집중 시간에만 재생</small>
+          <select class="sound-select" id="focusSound" aria-label="집중 백색소음 종류">
+            <option value="cafe">☕ 카페</option><option value="fire">🔥 장작 타는 소리</option><option value="rain">🌧 비 소리</option><option value="plane">✈ 비행기 기내음</option>
+          </select>
+        </div>
+        <label class="switch"><input type="checkbox" id="focusNoise"><span></span></label>
+      </div>
+      <div class="sound-card">
+        <div class="sound-info"><span class="sound-icon">☾</span><b>휴식 백색소음</b><small>휴식 시간에만 재생</small>
+          <select class="sound-select" id="breakSound" aria-label="휴식 백색소음 종류">
+            <option value="rain">🌧 비 소리</option><option value="cafe">☕ 카페</option><option value="fire">🔥 장작 타는 소리</option><option value="plane">✈ 비행기 기내음</option>
+          </select>
+        </div>
+        <label class="switch"><input type="checkbox" id="breakNoise"><span></span></label>
+      </div>
+      <div class="sound-note" id="soundNote">소리는 시작 버튼을 누른 뒤 재생됩니다.</div>
+    </section>
+    <footer>FOCUS · REST · REPEAT <span>♡</span></footer>
+  </main>
+
+  <dialog id="settingsDialog">
+    <form method="dialog" id="settingsForm">
+      <div class="dialog-head"><h2>나만의 루틴</h2><button class="icon-btn" value="cancel" aria-label="닫기">✕</button></div>
+      <p class="dialog-desc">시간은 5분 단위로 설정돼요.</p>
+      <label class="setting-row"><span>집중 시간</span><div class="stepper"><button type="button" data-step="focus" data-delta="-5">−</button><output id="focusValue">25분</output><button type="button" data-step="focus" data-delta="5">＋</button></div></label>
+      <label class="setting-row"><span>휴식 시간</span><div class="stepper"><button type="button" data-step="rest" data-delta="-5">−</button><output id="restValue">5분</output><button type="button" data-step="rest" data-delta="5">＋</button></div></label>
+      <label class="setting-row"><span>반복 세트</span><div class="stepper"><button type="button" data-step="sets" data-delta="-1">−</button><output id="setsValue">4세트</output><button type="button" data-step="sets" data-delta="1">＋</button></div></label>
+      <div class="setting-row"><span>단계 전환 알림</span><label class="switch"><input type="checkbox" id="soundAlert" checked><span></span></label></div>
+      <div class="setting-row"><span>진동</span><label class="switch"><input type="checkbox" id="vibration" checked><span></span></label></div>
+      <div class="setting-row"><span>화면 켜짐 유지</span><label class="switch"><input type="checkbox" id="wakeLock"><span></span></label></div>
+      <div class="dialog-actions"><button class="secondary-btn" id="notifyBtn" type="button">알림 권한 확인</button><button class="primary-btn" value="default">저장하기</button></div>
+      <button class="danger-btn" id="fullResetOpen" type="button">↻ 전체 초기화</button>
+      <p class="tiny-note">앱을 완전히 종료한 상태의 알림은 브라우저·운영체제 지원에 따라 제한될 수 있어요.</p>
+    </form>
+  </dialog>
+
+  <dialog id="completeDialog">
+    <div class="complete-content">
+      <div class="confetti">✦ ✧ ✦</div>
+      <div class="mini-cat"> ฅ^•ﻌ•^ฅ </div>
+      <h2>오늘도 정말 고생했어요!</h2>
+      <p id="quote">작은 걸음도 멈추지 않으면 목적지에 닿아요.</p>
+      <button class="primary-btn" id="completeClose">마무리하기</button>
+    </div>
+  </dialog>
+
+  <dialog id="resetConfirmDialog">
+    <div class="confirm-content">
+      <div class="confirm-mark">↻</div>
+      <h2>정말 초기화할 거야?</h2>
+      <p>집중·휴식 시간, 세트 수, 오늘의 진행 상황과 소리 설정을 모두 기본값으로 되돌려요.<br>이 작업은 되돌릴 수 없어요.</p>
+      <div class="confirm-actions">
+        <button class="secondary-btn" id="resetNo" type="button">아니요</button>
+        <button class="danger-solid" id="resetYes" type="button">예, 초기화할게요</button>
+      </div>
+    </div>
+  </dialog>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

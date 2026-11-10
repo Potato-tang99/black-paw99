@@ -1,0 +1,6 @@
+{
+  "appId": "kr.blackpaw.focus",
+  "appName": "BLACK PAW",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
